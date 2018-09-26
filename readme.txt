@@ -4,10 +4,10 @@ SoftFP Library by Fabrice Bellard
 1) Features
 -----------
 
-- Support of the IEEE 754-2008 32/64/128 bit floating point types.
+- Support of the IEEE 754-2008 16/32/64/128 bit floating point types.
 
 - Support of the 4 elementary operations plus square root, fused
-  multiply-add, minimum, maximum, conversion to and from 32/64/128
+  multiply-add, minimum, maximum, conversion to and from 16/32/64/128
   bit signed or unsigned integers.
 
 - RISCV FPU specifics are supported by default.

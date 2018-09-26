@@ -21,7 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-#if F_SIZE == 32
+#if F_SIZE == 16
+#define F_UINT uint16_t
+#define F_ULONG uint32_t
+#define MANT_SIZE 10
+#define EXP_SIZE 5
+#elif F_SIZE == 32
 #define F_UINT uint32_t
 #define F_ULONG uint64_t
 #define MANT_SIZE 23

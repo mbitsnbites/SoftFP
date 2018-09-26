@@ -52,10 +52,50 @@ typedef enum {
 #define FCLASS_SNAN       (1 << 8)
 #define FCLASS_QNAN       (1 << 9)
 
+typedef uint16_t sfloat16;
 typedef uint32_t sfloat32;
 typedef uint64_t sfloat64;
 #ifdef HAVE_INT128
 typedef uint128_t sfloat128;
+#endif
+
+/* 16 bit floats */
+
+#define FSIGN_MASK16 (1 << 15)
+
+sfloat16 add_sf16(sfloat16 a, sfloat16 b, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 sub_sf16(sfloat16 a, sfloat16 b, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 mul_sf16(sfloat16 a, sfloat16 b, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 div_sf16(sfloat16 a, sfloat16 b, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 sqrt_sf16(sfloat16 a, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 fma_sf16(sfloat16 a, sfloat16 b, sfloat16 c, RoundingModeEnum rm, uint32_t *pfflags);
+
+sfloat16 min_sf16(sfloat16 a, sfloat16 b, uint32_t *pfflags);
+sfloat16 max_sf16(sfloat16 a, sfloat16 b, uint32_t *pfflags);
+int eq_quiet_sf16(sfloat16 a, sfloat16 b, uint32_t *pfflags);
+int le_sf16(sfloat16 a, sfloat16 b, uint32_t *pfflags);
+int lt_sf16(sfloat16 a, sfloat16 b, uint32_t *pfflags);
+uint32_t fclass_sf16(sfloat16 a);
+
+sfloat32 cvt_sf16_sf32(sfloat16 a, uint32_t *pfflags);
+sfloat64 cvt_sf16_sf64(sfloat16 a, uint32_t *pfflags);
+sfloat16 cvt_sf32_sf16(sfloat32 a, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 cvt_sf64_sf16(sfloat64 a, RoundingModeEnum rm, uint32_t *pfflags);
+int32_t cvt_sf16_i32(sfloat16 a, RoundingModeEnum rm, uint32_t *pfflags);
+uint32_t cvt_sf16_u32(sfloat16 a, RoundingModeEnum rm, uint32_t *pfflags);
+int64_t cvt_sf16_i64(sfloat16 a, RoundingModeEnum rm, uint32_t *pfflags);
+uint64_t cvt_sf16_u64(sfloat16 a, RoundingModeEnum rm, uint32_t *pfflags);
+#ifdef HAVE_INT128
+int128_t cvt_sf16_i128(sfloat16 a, RoundingModeEnum rm, uint32_t *pfflags);
+uint128_t cvt_sf16_u128(sfloat16 a, RoundingModeEnum rm, uint32_t *pfflags);
+#endif
+sfloat16 cvt_i32_sf16(int32_t a, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 cvt_u32_sf16(uint32_t a, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 cvt_i64_sf16(int64_t a, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 cvt_u64_sf16(uint64_t a, RoundingModeEnum rm, uint32_t *pfflags);
+#ifdef HAVE_INT128
+sfloat16 cvt_i128_sf16(int128_t a, RoundingModeEnum rm, uint32_t *pfflags);
+sfloat16 cvt_u128_sf16(uint128_t a, RoundingModeEnum rm, uint32_t *pfflags);
 #endif
 
 /* 32 bit floats */

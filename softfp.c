@@ -29,6 +29,17 @@
 #include "cutils.h"
 #include "softfp.h"
 
+static inline int clz16(uint16_t a)
+{
+    int r;
+    if (a == 0) {
+        r = 16;
+    } else {
+        r = __builtin_clz(a);
+    }
+    return r;
+}
+
 static inline int clz32(uint32_t a)
 {
     int r;
@@ -71,6 +82,9 @@ static inline int clz128(uint128_t a)
     return r;
 }
 #endif
+
+#define F_SIZE 16
+#include "softfp_template.h"
 
 #define F_SIZE 32
 #include "softfp_template.h"
